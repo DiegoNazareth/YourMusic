@@ -152,7 +152,31 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                
+                            <form method="post"> 
+                                        <?php include('errors.php')?>
+                                            <div class="form-group">
+                                                <label class="small mb-1" >Cancion</label>
+                                                <input class="form-control py-4"  type="text" name="cancion" placeholder="Ingresa la cancion" />
+                                            </div>
+                                            
+                                           
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                               
+                                                <input type="submit" name="enviar" class="btn btn-primary" value="Cancion" />
+                                            </div>
+                                        </form>
+                            <?php
+                            if(isset ($_POST['enviar'])){
+                            $busqueda=$_POST['cancion'];
+                           
+                             $url= "https://es.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch=.'$busqueda'";
+                             $json=file_get_contents($url);
+                             var_dump(json_decode($json, true));
+                             //    $data=json_decode($json, true);
+   // echo "Letra de la cancion:<br/> <br/>". $data;
+                        //echo $json;
+                            }
+                            ?>
 
 
                             </div>
